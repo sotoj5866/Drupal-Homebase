@@ -40,7 +40,7 @@ class HomebaseForm extends FormBase {
     }
     $form['players'] = [
       '#type' => 'select',
-      '#title' => $this->t('Select element'),
+      '#title' => $this->t('Player'),
       '#options' => $option_array,
     ];
 
@@ -69,7 +69,7 @@ class HomebaseForm extends FormBase {
 
     $form['types'] = [
       '#type' => 'select',
-      '#title' => $this->t('Select element'),
+      '#title' => $this->t('Skill'),
       '#options' => [
         'Batting' => $this->t('Batting'),
         'Catching' => $this->t('Catching'),
