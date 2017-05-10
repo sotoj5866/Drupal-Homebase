@@ -1,0 +1,3 @@
+services:
+  test_level.levels:
+    class: Drupal\test_example\TestLevels
