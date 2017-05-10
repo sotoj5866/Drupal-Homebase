@@ -1,0 +1,15 @@
+roster_gen.form:
+  path: '/roster-gen-form'
+  defaults:
+    _title: 'Attendance Form'
+    _form: '\Drupal\roster_gen\Form\RosterGenForm'
+  requirements:
+    _permission: 'access content'
+
+roster_gen.roster_gen_controller:
+  path: '/lineup'
+  defaults:
+    _controller: '\Drupal\roster_gen\Controller\RosterGenController::lineup'
+    _title: 'Lineup'
+  requirements:
+    _permission: 'access content'

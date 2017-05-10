@@ -1,0 +1,7 @@
+homebase.form:
+  path: '/homebase-form'
+  defaults:
+    _title: 'Homebase Form'
+    _form: '\Drupal\homebase\Form\HomebaseForm'
+  requirements:
+    _permission: 'access content'

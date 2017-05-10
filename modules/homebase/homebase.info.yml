@@ -1,0 +1,5 @@
+name: Homebase
+description: Gamifying the little league experience
+core: 8.x
+package: Custom
+type: module
