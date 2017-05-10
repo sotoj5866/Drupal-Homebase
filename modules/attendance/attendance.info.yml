@@ -1,0 +1,5 @@
+name: Attendance
+description: A roster generator tool
+core: 8.x
+package: Custom
+type: module

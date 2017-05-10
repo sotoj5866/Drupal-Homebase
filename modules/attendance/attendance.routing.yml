@@ -1,0 +1,15 @@
+attendance.form:
+  path: '/attendance'
+  defaults:
+    _title: 'Attendance Form'
+    _form: '\Drupal\attendance\Form\AttendanceForm'
+  requirements:
+    _permission: 'access content'
+#
+# roster_gen.roster_gen_controller:
+#   path: '/lineup'
+#   defaults:
+#     _controller: '\Drupal\roster_gen\Controller\PracticeController::attendance'
+#     _title: 'Lineup'
+#   requirements:
+#     _permission: 'access content'
