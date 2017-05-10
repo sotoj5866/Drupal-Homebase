@@ -1,0 +1,7 @@
+custom_ajax.getStats:
+  path: '/custom-ajax/{js}/{node_id}'
+  defaults:
+    _controller: '\Drupal\custom_ajax\Controller\CustomajaxController::getStats'
+    _title: 'Gets Player stats for allowed visitors.'
+  requirements:
+    _permission: 'access content'
