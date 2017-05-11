@@ -127,7 +127,7 @@ class HomebaseForm extends FormBase {
           $xp = 0;
         }
         $level = $this->findLevel($xp);
-        if($level!=$node->field_throwing_experience->value){
+        if($level!=$node->field_throwing_level->value){
           $node->set('field_throwing_level', $level);
           $node->save();
         }
@@ -139,7 +139,7 @@ class HomebaseForm extends FormBase {
           $xp = 0;
         }
         $level = $this->findLevel($xp);
-        if($level!=$node->field_catching_experience->value){
+        if($level!=$node->field_catching_level>value){
           $node->set('field_catching_level', $level);
           $node->save();
         }
