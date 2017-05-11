@@ -1,0 +1,25 @@
+<?php
+
+// This module is for the assignment of stats and badges to players of the roster
+
+// use Drupal\Core\Url;
+use Drupal\node\Entity\Node;
+
+function badges_node_load(array $entities){
+    foreach($entities as $entity){
+        print '<pre>';
+        print_r($entity->field_batting_experience->value);
+        print '</pre>';
+        // if($entity->type->value == 'player'){
+        //     print '<pre>';
+        //     print_r($entity->title->value);
+        //     print '</pre>';
+        // }
+
+        // foreach ($entity as $key => $value) {
+        //
+        // }
+        // break;
+
+    }
+}
