@@ -9,9 +9,14 @@ namespace Drupal\achievements\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+<<<<<<< HEAD
 use \Drupal\file\Entity\File;
 use \Drupal\node\Entity\Node;
 use Drupal\achievements\Controller;
+=======
+
+use Drupal\acievements\Controller;
+>>>>>>> 29c9649ccabb4a6a551d649a9389cedbed0d9177
 /**
 * Implements an achievements form.
 */
@@ -52,47 +57,68 @@ class AchievementsForm extends FormBase {
       '#type' => 'number',
       '#title' => $this->t('Add Hits'),
       '#description' => $this->t('Please enter a number.'),
+<<<<<<< HEAD
       '#default_value'=> 0,
+=======
+>>>>>>> 29c9649ccabb4a6a551d649a9389cedbed0d9177
     ];
 
     $form['field-caught-flies'] = [
       '#type' => 'number',
       '#title' => $this->t('Add Caught Flies'),
+<<<<<<< HEAD
       '#default_value'=> 0,
+=======
+>>>>>>> 29c9649ccabb4a6a551d649a9389cedbed0d9177
       '#description' => $this->t('Please enter a number.'),
     ];
 
     $form['field-outs'] = [
       '#type' => 'number',
       '#title' => $this->t('Add Outs'),
+<<<<<<< HEAD
       '#default_value'=> 0,
+=======
+>>>>>>> 29c9649ccabb4a6a551d649a9389cedbed0d9177
       '#description' => $this->t('Please enter a number.'),
     ];
 
     $form['field-rbis'] = [
       '#type' => 'number',
       '#title' => $this->t('Add RBIs'),
+<<<<<<< HEAD
       '#default_value'=> 0,
+=======
+>>>>>>> 29c9649ccabb4a6a551d649a9389cedbed0d9177
       '#description' => $this->t('Please enter a number.'),
     ];
     $form['field-stolen-bases'] = [
       '#type' => 'number',
       '#title' => $this->t('Add Stolen Bases'),
+<<<<<<< HEAD
       '#default_value'=> 0,
+=======
+>>>>>>> 29c9649ccabb4a6a551d649a9389cedbed0d9177
       '#description' => $this->t('Please enter a number.'),
     ];
 
     $form['field-strikeout'] = [
       '#type' => 'number',
       '#title' => $this->t('Add Strike Outs'),
+<<<<<<< HEAD
       '#default_value'=> 0,
+=======
+>>>>>>> 29c9649ccabb4a6a551d649a9389cedbed0d9177
       '#description' => $this->t('Please enter a number.'),
     ];
 
     $form['field-sacrifices'] = [
       '#type' => 'number',
       '#title' => $this->t('Add Sacrifices'),
+<<<<<<< HEAD
       '#default_value'=> 0,
+=======
+>>>>>>> 29c9649ccabb4a6a551d649a9389cedbed0d9177
       '#description' => $this->t('Please enter a number.'),
     ];
 
@@ -130,9 +156,6 @@ class AchievementsForm extends FormBase {
     $node_player->set('field_strikeouts', $node_player->field_strikeouts->value + $form_state->getValue('field-strikeouts'));
     $node_player->save();
 
-// foreach ($node_player as $key) {
-  # code...
-// }
     $this->assignBadges($node_player);
   }
 
@@ -277,6 +300,11 @@ class AchievementsForm extends FormBase {
     }
 
     $player->save();
+=======
+    print '<pre>';
+      print_r($player);
+    print '</pre>';
+>>>>>>> 29c9649ccabb4a6a551d649a9389cedbed0d9177
   }
 
 }
