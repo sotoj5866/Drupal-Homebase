@@ -8,3 +8,7 @@ function homebase_user_login($account) {
   $response->send();
   return;
 }
+
+function homebase_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id){
+  var_dump($form_id);
+}
