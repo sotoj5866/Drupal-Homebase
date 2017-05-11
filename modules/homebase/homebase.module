@@ -1,8 +1,10 @@
 <?php
 
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
 function homebase_user_login($account) {
   $url = "/";
-  $response = new Symfony\Component\HttpFoundation\RedirectResponse($url);
+  $response = new RedirectResponse($url);
   $response->send();
   return;
 }
