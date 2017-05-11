@@ -34,6 +34,8 @@ class AttendanceForm extends FormBase {
       array_push($players, $node->title->value);
     }
     sort($players);
+    $default_vals = array_keys($players);
+
     $practice_nids = \Drupal::entityQuery('node')->condition('type','events')->execute();
     $practice_nodes =  \Drupal\node\Entity\Node::loadMultiple($practice_nids);
     $practices = array();
@@ -57,6 +59,12 @@ class AttendanceForm extends FormBase {
         '#default_value' => 1,
       );
     }
+
+      // $form['attendance'] = array(
+      //   '#type' => 'checkboxes',
+      //   '#options' => $players,
+      //   '#default_value' => $default_vals,
+      // );
 
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = array(
@@ -83,25 +91,58 @@ class AttendanceForm extends FormBase {
     $players = array();
     $absent = array();
     $practice = $form_state->getValue('practice');
+    // $tend = $form_state->getValue('attendance');
+
     foreach ($form_state->getValues() as $key => $value) {
       if($value === 1){
         array_push($players, $key);
       }
     }
-    // foreach ($players as $player) {
+    $hitting = array('field_bunting', 'field_contact_hitting', 'field_power_hitting');
+    $throwing = array('field_short_throws', 'field_long_throws');
+    $catching = array('field_fly_balls', 'field_grounders');
+    foreach ($players as $player) {
       # code...
-      $selected_player = \Drupal::entityQuery('node')->condition('type','events')->condition('title', $practice, 'CONTAINS')->execute();
-      $selected_node =  \Drupal\node\Entity\Node::loadMultiple($selected_player);
-      foreach ($selected_node as $key) {
-        $test = $key->title->value;
+      $selected_practice = \Drupal::entityQuery('node')->condition('type','events')->condition('title', $practice, 'CONTAINS')->execute();
+      $selected_practice_node =  \Drupal\node\Entity\Node::loadMultiple($selected_practice);
+      foreach ($selected_practice_node as $key) {
+        $practice_info = array('name' => $key->title->value, 'field_bunting' => $key->field_bunting->value, 'field_contact_hitting' => $key->field_contact_hitting->value, 'field_fly_balls' => $key->field_fly_balls->value, 'field_grounders' => $key->field_grounders->value, 'field_long_throws' => $key->field_long_throws->value, 'field_power_hitting' => $key->field_power_hitting->value, 'field_short_throws' => $key->field_short_throws->value);
       }
-    // }
+      $filtered = array_filter($practice_info);
+      $filtered_keys = array_keys($filtered);
+      $hit_matches = count(array_intersect($hitting, $filtered_keys));
+      $throw_matches = count(array_intersect($throwing, $filtered_keys));
+      $catch_matches = count(array_intersect($catching, $filtered_keys));
 
-    // $_SESSION['players'] = $players;
-    // $_SESSION['practice'] = $practice;
-    // $_SESSION['absent'] = $absent;
-    var_dump($test);
-    // $form_state->setRedirect('roster_gen.roster_gen_controller');
+      $selected_player = \Drupal::entityQuery('node')->condition('type','player')->condition('title', $player, 'CONTAINS')->execute();
+      $selected_player_node =  \Drupal\node\Entity\Node::loadMultiple($selected_player);
+
+      foreach ($selected_player_node as $key) {
+        $new_bat_xp = $key->field_batting_experience->value + ($hit_matches*20);
+        $key->set('field_batting_experience', $new_bat_xp);
+        $new_bat_lvl = floor(($new_bat_xp + 100)/100);
+        if($key->field_batting_level->value != $new_bat_lvl){
+          $key->set('field_batting_level', $new_bat_lvl);
+        }
+
+        $new_throw_xp = $key->field_throwing_experience->value + ($throw_matches*20);
+        $key->set('field_throwing_experience', $new_throw_xp);
+        $new_throw_lvl = floor(($new_throw_xp + 100)/100);
+        if($key->field_throwing_level->value != $new_throw_lvl){
+          $key->set('field_throwing_level', $new_throw_lvl);
+        }
+
+        $new_catch_xp = $key->field_catching_experience->value + ($catch_matches*20);
+        $key->set('field_catching_experience', $new_catch_xp);
+        $new_catch_lvl = floor(($new_catch_xp + 100)/100);
+        if($key->field_catching_level->value != $new_catch_lvl){
+          $key->set('field_catching_level', $new_catch_lvl);
+        }
+
+        $key->save();
+      }
+    }
+    drupal_set_message("xp add");
   }
 
 }
