@@ -1,0 +1,5 @@
+name: Achievements
+description: Updating the achievements made during games.
+core: 8.x
+package: Custom
+type: module
