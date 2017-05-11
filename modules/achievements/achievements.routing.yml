@@ -1,0 +1,7 @@
+achievements.form:
+  path: '/achievements-form'
+  defaults:
+    _title: 'Achievement Form'
+    _form: '\Drupal\achievements\Form\AchievementsForm'
+  requirements:
+    _permission: 'access content'
