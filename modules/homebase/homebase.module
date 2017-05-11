@@ -5,10 +5,10 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 function homebase_user_login($account) {
   $url = "/";
   $response = new RedirectResponse($url);
+  echo '<pre>';
+  var_dump($response);
+  echo '</pre>';
+  exit;
   $response->send();
   return;
-}
-
-function homebase_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id){
-  var_dump($form_id);
 }
