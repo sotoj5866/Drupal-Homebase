@@ -9,8 +9,9 @@ namespace Drupal\achievements\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-
-use Drupal\acievements\Controller;
+use \Drupal\file\Entity\File;
+use \Drupal\node\Entity\Node;
+use Drupal\achievements\Controller;
 /**
 * Implements an achievements form.
 */
@@ -51,40 +52,47 @@ class AchievementsForm extends FormBase {
       '#type' => 'number',
       '#title' => $this->t('Add Hits'),
       '#description' => $this->t('Please enter a number.'),
+      '#default_value'=> 0,
     ];
 
     $form['field-caught-flies'] = [
       '#type' => 'number',
       '#title' => $this->t('Add Caught Flies'),
+      '#default_value'=> 0,
       '#description' => $this->t('Please enter a number.'),
     ];
 
     $form['field-outs'] = [
       '#type' => 'number',
       '#title' => $this->t('Add Outs'),
+      '#default_value'=> 0,
       '#description' => $this->t('Please enter a number.'),
     ];
 
     $form['field-rbis'] = [
       '#type' => 'number',
       '#title' => $this->t('Add RBIs'),
+      '#default_value'=> 0,
       '#description' => $this->t('Please enter a number.'),
     ];
     $form['field-stolen-bases'] = [
       '#type' => 'number',
       '#title' => $this->t('Add Stolen Bases'),
+      '#default_value'=> 0,
       '#description' => $this->t('Please enter a number.'),
     ];
 
     $form['field-strikeout'] = [
       '#type' => 'number',
       '#title' => $this->t('Add Strike Outs'),
+      '#default_value'=> 0,
       '#description' => $this->t('Please enter a number.'),
     ];
 
     $form['field-sacrifices'] = [
       '#type' => 'number',
       '#title' => $this->t('Add Sacrifices'),
+      '#default_value'=> 0,
       '#description' => $this->t('Please enter a number.'),
     ];
 
@@ -122,6 +130,9 @@ class AchievementsForm extends FormBase {
     $node_player->set('field_strikeouts', $node_player->field_strikeouts->value + $form_state->getValue('field-strikeouts'));
     $node_player->save();
 
+// foreach ($node_player as $key) {
+  # code...
+// }
     $this->assignBadges($node_player);
   }
 
@@ -129,9 +140,143 @@ class AchievementsForm extends FormBase {
   * {@inheritdoc}
   */
   public function assignBadges($player){
-    print '<pre>';
-      print_r($player);
-    print '</pre>';
+    //badge assign for hits
+    if($player->field_hits->value >= 100){
+      $player->set('field_hit_badges', '<img class="badge" src="/img/HomeBase_Images/hit_badges/100thHit.png">');
+      $player->field_hit_badges->format='full_html';
+    }else if($player->field_hits->value >= 50){
+      $player->set('field_hit_badges', '<img class="badge" src="/img/HomeBase_Images/hit_badges/50thHit.png">');
+      $player->field_hit_badges->format='full_html';
+    }else if($player->field_hits->value >= 25){
+      $player->set('field_hit_badges', '<img class="badge" src="/img/HomeBase_Images/hit_badges/25thHit.png">');
+      $player->field_hit_badges->format='full_html';
+    }else if($player->field_hits->value >= 20){
+      $player->set('field_hit_badges', '<img class="badge" src="/img/HomeBase_Images/hit_badges/20thHit.png">');
+      $player->field_hit_badges->format='full_html';
+    }else if($player->field_hits->value >= 15){
+      $player->set('field_hit_badges', '<img class="badge" src="/img/HomeBase_Images/hit_badges/15thHit.png">');
+      $player->field_hit_badges->format='full_html';
+    }else if($player->field_hits->value >= 10){
+      $player->set('field_hit_badges', '<img class="badge" src="/img/HomeBase_Images/hit_badges/10thHit.png">');
+      $player->field_hit_badges->format='full_html';
+    }else if($player->field_hits->value >= 5){
+      $player->set('field_hit_badges', '<img class="badge" src="/img/HomeBase_Images/hit_badges/5thHit.png">');
+      $player->field_hit_badges->format='full_html';
+    }else if($player->field_hits->value >= 1){
+      $player->set('field_hit_badges', '<img class="badge" src="/img/HomeBase_Images/hit_badges/1stHit.png">');
+      $player->field_hit_badges->format='full_html';
+    }else{
+      $player->set('field_hit_badges', '<img class="badge" src="/img/HomeBase_Images/blankBadge.png">');
+      $player->field_hit_badges->format='full_html';
+    }
+
+    //badge assign for caught
+    if($player->field_caught_flies->value >= 25){
+      $player->set('field_caught_badges', '<img class="badge" src="/img/HomeBase_Images/caught_badges/25thCaught.png">');
+      $player->field_caught_badges->format='full_html';
+    }else if($player->field_caught_flies->value >= 10){
+      $player->set('field_caught_badges', '<img class="badge" src="/img/HomeBase_Images/caught_badges/10thCaught.png">');
+      $player->field_caught_badges->format='full_html';
+    }else if($player->field_caught_flies->value >= 5){
+      $player->set('field_caught_badges', '<img class="badge" src="/img/HomeBase_Images/caught_badges/5thCaught.png">');
+      $player->field_caught_badges->format='full_html';
+    }else if($player->field_caught_flies->value >= 1){
+      $player->set('field_caught_badges', '<img class="badge" src="/img/HomeBase_Images/caught_badges/1stCaught.png">');
+      $player->field_caught_badges->format='full_html';
+    }else{
+      $player->set('field_caught_badges', '<img class="badge" src="/img/HomeBase_Images/blankBadge.png">');
+      $player->field_caught_badges->format='full_html';
+    }
+
+    //badge assign for outs
+    if($player->field_outs->value >= 25){
+      $player->set('field_out_badges', '<img class="badge" src="/img/HomeBase_Images/out_badges/25thOut.png">');
+      $player->field_out_badges->format='full_html';
+    }else if($player->field_outs->value >= 10){
+      $player->set('field_out_badges', '<img class="badge" src="/img/HomeBase_Images/out_badges/10thOut.png">');
+      $player->field_out_badges->format='full_html';
+    }else if($player->field_outs->value >= 5){
+      $player->set('field_out_badges', '<img class="badge" src="/img/HomeBase_Images/out_badges/5thOut.png">');
+      $player->field_out_badges->format='full_html';
+    }else if($player->field_outs->value >= 1){
+      $player->set('field_out_badges', '<img class="badge" src="/img/HomeBase_Images/out_badges/1stOut.png">');
+      $player->field_out_badges->format='full_html';
+    }else{
+      $player->set('field_out_badges', '<img class="badge" src="/img/HomeBase_Images/blankBadge.png">');
+      $player->field_out_badges->format='full_html';
+    }
+
+    //badge assign for RBI
+
+    if($player->field_rbis->value >= 10){
+      $player->set('field_rbi_badges', '<img class="badge" src="/img/HomeBase_Images/RBI_badge/10thRBI.png">');
+      $player->field_rbi_badges->format='full_html';
+    }else if($player->field_rbis->value >= 5){
+      $player->set('field_rbi_badges', '<img class="badge" src="/img/HomeBase_Images/RBI_badge/5thRBI.png">');
+      $player->field_rbi_badges->format='full_html';
+    }else if($player->field_rbis->value >= 1){
+      $player->set('field_rbi_badges', '<img class="badge" src="/img/HomeBase_Images/RBI_badge/1stRBI.png">');
+      $player->field_rbi_badges->format='full_html';
+    }else{
+      $player->set('field_rbi_badges', '<img class="badge" src="/img/HomeBase_Images/blankBadge.png">');
+      $player->field_rbi_badges->format='full_html';
+    }
+
+    //badge assign for Sacrifices
+    if($player->field_sacrifices->value >= 3){
+      $player->set('field_sacrifice_badges', '<img class="badge" src="/img/HomeBase_Images/sacrifice_badges/3rdSac.png">');
+      $player->field_sacrifice_badges->format='full_html';
+    }else if($player->field_sacrifices->value >= 1){
+      $player->set('field_sacrifice_badges', '<img class="badge" src="/img/HomeBase_Images/sacrifice_badges/1stSac.png">');
+      $player->field_sacrifice_badges->format='full_html';
+    }else{
+      $player->set('field_sacrifice_badges', '<img class="badge" src="/img/HomeBase_Images/blankBadge.png">');
+      $player->field_sacrifice_badges->format='full_html';
+    }
+
+    //badge assign for stealing
+    if($player->field_stolen_bases->value >= 25){
+      $player->set('field_stealing_badges', '<img class="badge" src="/img/HomeBase_Images/stealing_badge/25thSteal.png">');
+      $player->field_stealing_badges->format='full_html';
+    }else if($player->field_stolen_bases->value >= 10){
+      $player->set('field_stealing_badges', '<img class="badge" src="/img/HomeBase_Images/stealing_badge/10thSteal.png">');
+      $player->field_stealing_badges->format='full_html';
+    }else if($player->field_stolen_bases->value >= 5){
+      $player->set('field_stealing_badges', '<img class="badge" src="/img/HomeBase_Images/stealing_badge/5thSteal.png">');
+      $player->field_stealing_badges->format='full_html';
+    }else if($player->field_stolen_bases->value >= 1){
+      $player->set('field_stealing_badges', '<img class="badge" src="/img/HomeBase_Images/stealing_badge/1stSteal.png">');
+      $player->field_stealing_badges->format='full_html';
+    }else{
+      $player->set('field_stealing_badges', '<img class="badge" src="/img/HomeBase_Images/blankBadge.png">');
+      $player->field_stealing_badges->format='full_html';
+    }
+
+    //badge assign for strikes
+    if($player->field_strikeouts->value >= 25){
+      $player->set('field_strike_badges', '<img class="badge" src="/img/HomeBase_Images/strike_badge/25thStrike.png">');
+      $player->field_strike_badges->format='full_html';
+    }else if($player->field_strikeouts->value >= 15){
+      $player->set('field_strike_badges', '<img class="badge" src="/img/HomeBase_Images/strike_badge/15thStrike.png">');
+      $player->field_strike_badges->format='full_html';
+    }else if($player->field_strikeouts->value >= 10){
+      $player->set('field_strike_badges', '<img class="badge" src="/img/HomeBase_Images/strike_badge/10thStrike.png">');
+      $player->field_strike_badges->format='full_html';
+    }else if($player->field_strikeouts->value >= 5){
+      $player->set('field_strike_badges', '<img class="badge" src="/img/HomeBase_Images/strike_badge/5thStrike.png">');
+      $player->field_strike_badges->format='full_html';
+    }else if($player->field_strikeouts->value >= 3){
+      $player->set('field_strike_badges', '<img class="badge" src="/img/HomeBase_Images/strike_badge/3rdStrike.png">');
+      $player->field_strike_badges->format='full_html';
+    }else if($player->field_strikeouts->value >= 1){
+      $player->set('field_strike_badges', '<img class="badge" src="/img/HomeBase_Images/strike_badge/1stStrike.png">');
+      $player->field_strike_badges->format='full_html';
+    }else{
+      $player->set('field_strike_badges', '<img class="badge" src="/img/HomeBase_Images/blankBadge.png">');
+      $player->field_strike_badges->format='full_html';
+    }
+
+    $player->save();
   }
 
 }
