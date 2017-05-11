@@ -91,32 +91,40 @@ class AttendanceForm extends FormBase {
     $players = array();
     $absent = array();
     $practice = $form_state->getValue('practice');
-    // $tend = $form_state->getValue('attendance');
 
+    //create array for each player that shows to the practice
     foreach ($form_state->getValues() as $key => $value) {
       if($value === 1){
         array_push($players, $key);
       }
     }
+
+    //arrays for each practice objective option
     $hitting = array('field_bunting', 'field_contact_hitting', 'field_power_hitting');
     $throwing = array('field_short_throws', 'field_long_throws');
     $catching = array('field_fly_balls', 'field_grounders');
+
+    //loop through each player at practice
     foreach ($players as $player) {
-      # code...
+      //finds the selected practice
       $selected_practice = \Drupal::entityQuery('node')->condition('type','events')->condition('title', $practice, 'CONTAINS')->execute();
       $selected_practice_node =  \Drupal\node\Entity\Node::loadMultiple($selected_practice);
       foreach ($selected_practice_node as $key) {
+        //create array for selected practice information
         $practice_info = array('name' => $key->title->value, 'field_bunting' => $key->field_bunting->value, 'field_contact_hitting' => $key->field_contact_hitting->value, 'field_fly_balls' => $key->field_fly_balls->value, 'field_grounders' => $key->field_grounders->value, 'field_long_throws' => $key->field_long_throws->value, 'field_power_hitting' => $key->field_power_hitting->value, 'field_short_throws' => $key->field_short_throws->value);
       }
       $filtered = array_filter($practice_info);
       $filtered_keys = array_keys($filtered);
+
+      //counts how many of the potential practice options are there for each type
       $hit_matches = count(array_intersect($hitting, $filtered_keys));
       $throw_matches = count(array_intersect($throwing, $filtered_keys));
       $catch_matches = count(array_intersect($catching, $filtered_keys));
 
+      //grabs node for particular player in the loop
       $selected_player = \Drupal::entityQuery('node')->condition('type','player')->condition('title', $player, 'CONTAINS')->execute();
       $selected_player_node =  \Drupal\node\Entity\Node::loadMultiple($selected_player);
-
+      //update the player with new xp/levels
       foreach ($selected_player_node as $key) {
         $new_bat_xp = $key->field_batting_experience->value + ($hit_matches*20);
         $key->set('field_batting_experience', $new_bat_xp);
