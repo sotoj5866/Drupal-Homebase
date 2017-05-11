@@ -5,10 +5,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 function homebase_user_login($account) {
   $url = "/";
   $response = new RedirectResponse($url);
-  echo '<pre>';
-  var_dump($response);
-  echo '</pre>';
-  exit;
   $response->send();
   return;
 }
