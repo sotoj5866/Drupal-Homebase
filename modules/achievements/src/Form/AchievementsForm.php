@@ -10,6 +10,7 @@ namespace Drupal\achievements\Form;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 
+use Drupal\acievements\Controller;
 /**
 * Implements an achievements form.
 */
@@ -29,10 +30,14 @@ class AchievementsForm extends FormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
     $nids = \Drupal::entityQuery('node')->condition('type','player')->execute();
     $nodes =  \Drupal\node\Entity\Node::loadMultiple($nids);
-    var_dump($nids);
     $players = array();
+
     foreach ($nodes as $node){
       $players[$node->nid->value] = $this->t($node->title->value);
+
+      // if($node->nid->value == 1){
+      //   var_dump($node);
+      // }
     }
 
     $form['players'] = [
@@ -116,6 +121,17 @@ class AchievementsForm extends FormBase {
 
     $node_player->set('field_strikeouts', $node_player->field_strikeouts->value + $form_state->getValue('field-strikeouts'));
     $node_player->save();
+
+    $this->assignBadges($node_player);
+  }
+
+  /**
+  * {@inheritdoc}
+  */
+  public function assignBadges($player){
+    print '<pre>';
+      print_r($player);
+    print '</pre>';
   }
 
 }

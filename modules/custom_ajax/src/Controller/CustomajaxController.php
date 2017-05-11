@@ -46,4 +46,4 @@ class CustomajaxController extends ControllerBase {
 //       'type' => 'throbber',
 //       'message' => t('Verifying email...'),
 //     ),
-//   ],
+//   ],// use for predictive badges/levels
