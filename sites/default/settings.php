@@ -285,11 +285,10 @@ $config_directories = array();
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-<<<<<<< HEAD
+
 $settings['hash_salt'] = 'flG6X5lkxwOciP3gzkGhGCh5TGdxolnWrgMvZhlfm-3kaOLrQr5Qo9WWVeC9s8rUGM5Od0uQfg';
-=======
-$settings['hash_salt'] = 'KvwIbjC-pfW2ep3G6bbSoCC21OnoASyTU9uPAiA3k1g9nU4iWURQnLySZHTwO999mvAfGQqlXA';
->>>>>>> 11254975dbb4769004abce7e9aee05d96d757965
+
+// $settings['hash_salt'] = 'KvwIbjC-pfW2ep3G6bbSoCC21OnoASyTU9uPAiA3k1g9nU4iWURQnLySZHTwO999mvAfGQqlXA';
 
 /**
  * Deployment identifier.
@@ -770,12 +769,9 @@ if (file_exists(__DIR__ . '/settings.pantheon.php')) {
 # if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
-<<<<<<< HEAD
 if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
   include $app_root . '/' . $site_path . '/settings.local.php';
 }
-=======
->>>>>>> 11254975dbb4769004abce7e9aee05d96d757965
 $databases['default']['default'] = array (
   'database' => 'pantheon',
   'username' => 'admin-matt',
