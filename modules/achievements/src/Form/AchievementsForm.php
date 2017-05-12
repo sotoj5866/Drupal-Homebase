@@ -9,9 +9,11 @@ namespace Drupal\achievements\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+
 use \Drupal\file\Entity\File;
 use \Drupal\node\Entity\Node;
 use Drupal\achievements\Controller;
+
 /**
 * Implements an achievements form.
 */
@@ -53,11 +55,13 @@ class AchievementsForm extends FormBase {
       '#title' => $this->t('Add Hits'),
       '#description' => $this->t('Please enter a number.'),
       '#default_value'=> 0,
+
     ];
 
     $form['field-caught-flies'] = [
       '#type' => 'number',
       '#title' => $this->t('Add Caught Flies'),
+
       '#default_value'=> 0,
       '#description' => $this->t('Please enter a number.'),
     ];
@@ -130,9 +134,6 @@ class AchievementsForm extends FormBase {
     $node_player->set('field_strikeouts', $node_player->field_strikeouts->value + $form_state->getValue('field-strikeouts'));
     $node_player->save();
 
-// foreach ($node_player as $key) {
-  # code...
-// }
     $this->assignBadges($node_player);
   }
 
@@ -277,6 +278,7 @@ class AchievementsForm extends FormBase {
     }
 
     $player->save();
+
   }
 
 }

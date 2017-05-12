@@ -21,7 +21,7 @@ David Quisenberry, Matt Kelley, Xia Amendolara, Dylan Stackhouse
 ## Setup
 
 1. Download [php](https://secure.php.net/)
-2. Download [drupal 7](https://www.drupal.org/download)
+2. Download [drupal 8](https://www.drupal.org/download)
 3. Download [mysql](https://www.mysql.com/)
 4. Download [apache](https://httpd.apache.org/)
 5. Import the mqsql database (sites/db_backup/pantheon.sql.zip) into your mysql server (Server running on port 8889)
