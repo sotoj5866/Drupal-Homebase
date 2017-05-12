@@ -11,6 +11,7 @@ libraries:
 
 
 regions:
+  dashboard: 'Dashboard'
   header: Header
   help: Help
   page_top: 'Page top'

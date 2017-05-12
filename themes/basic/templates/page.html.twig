@@ -5,7 +5,16 @@
   main_menu or secondary_menu ? 'with-navigation',
   secondary_menu ? 'with-subnav'
 ) }}>
-
+ <!-- ______________ Dashboard Toolbar _____________________ -->
+ <div class="dashboard">
+   <div class="flex-container">
+     {% if page.dashboard %}
+     <div id="dashboard-region">
+       {{ page.dashboard }}
+     </div>
+     {% endif %}
+   </div>
+ </div>
   <!-- ______________________ HEADER _______________________ -->
 
   <header id="header">
