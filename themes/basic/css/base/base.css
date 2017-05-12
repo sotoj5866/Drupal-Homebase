@@ -188,6 +188,9 @@ body {
   font-size: 16px;
   line-height: 1.5;
   letter-spacing: 0.03em;
+
+  /*//*/
+  overflow-x: hidden;
 }
 
 h1,
@@ -285,6 +288,7 @@ abbr {
 .user-menu {
   position: absolute;
   right: 0;
+  width: 300px;
 }
 
 .user-menu .menu-item {
@@ -305,7 +309,9 @@ abbr {
 #block-basic-branding > a > img {
   width: 350px;
   min-width: 350px;
+  /*display: none;*/
 }
+
 #header {
   position: relative;
   color:lightgrey;
@@ -313,9 +319,20 @@ abbr {
 }
 #header a {
   color:white;
-
 }
+
+/* main content div */
+#main {
+  border-top: lightgrey solid 5px;
+  /*margin-top: 40px;*/
+}
+
+#main * {
+  margin-top: 20px;
+}
+
 .banner {
+  border-top: orange solid 2px;
   width:102%;
   height:100%;
   position: absolute;
@@ -327,8 +344,88 @@ abbr {
   background-position: bottom;
   background-size: 100% 140%;
   background-repeat: no-repeat;
-  filter: blur(5px);
+  filter: blur(2px);
 
   z-index: -500;
+  border-bottom: black solid 5px;
 }
+
+
+.dashboard {
+  position: relative;
+  height: 50px;
+  border-bottom: lightgrey solid 5px;
+}
+
+.dashboard input {
+  /*width: 200px;*/
+}
+#dashboard-region > div{
+  height:100px;
+}
+/*#dashboard-region > div > * {
+  display:inline-block;
+  margin-right: 200px;
+  height:50px;
+  color: red;
+}*/
+#block-basic-search {
+  position: absolute;
+  top: 0; left: 5px;
+}
+#block-basic-account-menu {
+  position: absolute;
+  top: 0px; right: 0px;
+}
+
+#block-basic-search form>* {
+  display: inline-block;
+}
+
+/* ________ Center dashboard __________*/
+#animate {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  transition: width 4s;
+  transition-timing-function: ease-out;
+
+  width: 82px;
+}
+
+#block-basic-tools {
+  width: 900px;
+  height: 45px;
+}
+
+#animate:hover {
+  width: 900px;
+}
+#block-basic-tools-menu {
+  opacity: 1;
+  transition:opacity 3.5s linear;
+}
+
+#block-basic-tools-menu:hover {
+  opacity: 0.3;
+}
+
+
+#block-basic-tools >* {
+  display: inline-block;
+}
+
+#block-basic-tools ul {
+  /*display: inline-block;*/
+  /*width: 50%;*/
+}
+
+#block-basic-tools li {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+#block-basic-tools li:nth-child(n+2):before {
+  content:"|";
+}
+
 /*# sourceMappingURL=base.css.map */
